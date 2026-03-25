@@ -1,0 +1,22 @@
+New text file (win 11):
+Alt + F, W, T (classic menu sequence, slower but works)
+Right-click → W → T (keyboard: press Menu key or Shift + F10, then W, then T)
+Or:
+Press Alt + N → opens “New” menu → then press T
+
+Pro tip (custom shortcut):
+
+You can create your own shortcut:
+
+Right-click desktop → New → Shortcut
+
+Use:
+
+notepad.exe
+Assign a shortcut key (e.g. Ctrl + Alt + T)
+
+That opens Notepad quickly, then just Ctrl + S to create the file wherever you want.
+
+If you want, I can show you how to make a true one-key shortcut that creates a .txt file instantly.
+
+How to do it on polish windows 11

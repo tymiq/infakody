@@ -1,0 +1,96 @@
+2.2
+💀💀💀💀💀💀💀💀💀💀
+
+Widzę, że zadanie trochę „zabiło” 😄💀
+Spokojnie — to jedno z tych, które wygląda strasznie, ale jest mechaniczne.
+
+Najprościej zapamiętać to tak:
+
+👉 szukasz środka 3×3, gdzie wszystkie 9 znaków są takie same
+
+Czyli dla każdego pola sprawdzasz taki układ:
+
+(i-1, j-1) (i-1, j) (i-1, j+1)
+(i,   j-1) (i,   j) (i,   j+1)
+(i+1, j-1) (i+1, j) (i+1, j+1)
+
+
+
+
+
+
+
+
+if all(lines[i+di][j+dj] == lines[i][j]
+       for di in [-1,0,1]
+       for dj in [-1,0,1]):
+
+
+
+
+
+
+
+
+
+
+
+
+lines = [line.strip() for line in open("symbole.txt")]
+
+wyniki = []
+
+for i in range(1, len(lines)-1):
+    for j in range(1, len(lines[i])-1):
+        if all(lines[i+di][j+dj] == lines[i][j]
+               for di in [-1,0,1]
+               for dj in [-1,0,1]):
+            wyniki.append((i+1, j+1))
+
+print(len(wyniki))
+for w in wyniki:
+    print(w[0], w[1])
+
+
+
+
+
+
+
+
+
+
+def znajdz_kwadraty(nazwa_pliku):
+    with open(nazwa_pliku) as f:
+        lines = [line.strip() for line in f]
+
+    wyniki = []
+
+    # przechodzimy po możliwych środkach (bez krawędzi)
+    for i in range(1, len(lines) - 1):
+        for j in range(1, len(lines[i]) - 1):
+            srodek = lines[i][j]
+
+            ok = True
+            # sprawdzamy 3x3 wokół środka
+            for di in [-1, 0, 1]:
+                for dj in [-1, 0, 1]:
+                    if lines[i + di][j + dj] != srodek:
+                        ok = False
+                        break
+                if not ok:
+                    break
+
+            if ok:
+                # +1 bo numeracja od 1
+                wyniki.append((i + 1, j + 1))
+
+    return wyniki
+
+
+# użycie:
+kwadraty = znajdz_kwadraty("symbole.txt")
+
+print(len(kwadraty))
+for wiersz, kolumna in kwadraty:
+    print(wiersz, kolumna)

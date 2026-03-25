@@ -1,0 +1,70 @@
+from math import gcd
+
+# wczytanie danych
+moves = []
+with open("dron.txt") as f:
+    for line in f:
+        a, b = map(int, line.strip().split())
+        moves.append((a, b))
+
+# ======================
+# Zadanie 3.1
+# ======================
+count = 0
+for a, b in moves:
+    if gcd(abs(a), abs(b)) > 1:
+        count += 1
+
+print("3.1:", count)
+
+# ======================
+# Zadanie 3.2
+# ======================
+
+# wyznaczanie wszystkich punktów po kolejnych ruchach
+points = []
+x, y = 0, 0
+
+for a, b in moves:
+    x += a
+    y += b
+    points.append((x, y))
+
+# ---- a) punkty w kwadracie (bez krawędzi)
+inside = 0
+for x, y in points:
+    if 0 < x < 5000 and 0 < y < 5000:
+        inside += 1
+
+print("3.2a:", inside)
+
+# ---- b) szukamy trójki punktów
+points_set = set(points)
+result = None
+
+for i in range(len(points)):
+    for j in range(i + 1, len(points)):
+        x1, y1 = points[i]
+        x2, y2 = points[j]
+
+        # środek odcinka
+        if (x1 + x2) % 2 == 0 and (y1 + y2) % 2 == 0:
+            mx = (x1 + x2) // 2
+            my = (y1 + y2) // 2
+
+            if (mx, my) in points_set:
+                result = ((x1, y1), (mx, my), (x2, y2))
+                break
+    if result:
+        break
+
+print("3.2b:", result)
+
+
+
+
+
+with open("wyniki3.txt", "w") as f:
+    f.write(f"3.1 {count}\n")
+    f.write(f"3.2a {inside}\n")
+    f.write(f"3.2b {result}\n")

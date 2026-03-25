@@ -1,0 +1,27 @@
+To już dużo prostsze niż wygląda — serio 😄
+
+Masz zamienić każdy napis (z o, +, *) na liczbę w systemie trójkowym, a potem znaleźć największą.
+
+🧠 Plan:
+Wczytaj każdy wiersz
+Zamień znaki na cyfry (o→0, +→1, *→2)
+Zamień z systemu trójkowego na dziesiętny (int(..., 3))
+Zapamiętaj największą liczbę i odpowiadający jej napis
+✅ Gotowy kod (Python)
+
+
+lines = [line.strip() for line in open("symbole.txt")]
+
+max_wartosc = -1
+max_napis = ""
+
+for line in lines:
+    liczba_trojkowa = line.replace('o', '0').replace('+', '1').replace('*', '2')
+    wartosc = int(liczba_trojkowa, 3)
+
+    if wartosc > max_wartosc:
+        max_wartosc = wartosc
+        max_napis = line
+
+print(max_wartosc, max_napis)
+
